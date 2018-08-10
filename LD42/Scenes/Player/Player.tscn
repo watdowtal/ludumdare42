@@ -1,12 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
+[ext_resource path="res://Scenes/Player/Sprite.png" type="Texture" id=2]
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -20,11 +15,101 @@ _sections_unfolded = [ "Collision" ]
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 rotation = 3.14159
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
 
-shape = SubResource( 1 )
+visible = false
+position = Vector2( -0.25, 0 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = 0
+limit_top = -10000000
+limit_right = 1024
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Limit" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SpawnTime" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="HitBox" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="HitBox" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -9.91948, -11.25, 9.33052, -11.5, 25.5805, -11.25, 25.5805, 7, 10.8305, -2.25, 10.8305, 7.5, 1.83052, 29, -0.919479, 29.25, -11.1695, -1.25, -25.1695, 6.25, -24.9195, -11.5 )
+
+[node name="HUD" type="CanvasLayer" parent="." index="4"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Control" type="Control" parent="HUD" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Timetext" type="Label" parent="HUD/Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_bottom = 158.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="timeout" from="SpawnTime" to="." method="_on_SpawnTime_timeout"]
 
 
