@@ -7,8 +7,8 @@ var time = 0
 var timetext
 
 func _ready():
-	time = 0
-	timetext = "0"
+	time = 52
+	timetext = "52"
 
 func _physics_process(delta):
 	movedir = move_and_slide(movedir)
@@ -27,5 +27,5 @@ func _physics_process(delta):
 
 func _on_CountDown_timeout():
 	$CountDown.start()
-	time += 1
+	time -= 1
 	timetext = str(time)

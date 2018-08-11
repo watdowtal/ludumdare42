@@ -1,34 +1,108 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Player/Sprite.png" type="Texture" id=2]
-[ext_resource path="res://UI Elements/Fonts/Boo City.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scenes/Player/Sprite1.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Player/Sprite2.png" type="Texture" id=3]
+[ext_resource path="res://UI Elements/Fonts/Boo City.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scenes/Player/Particles.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
 
 [sub_resource type="DynamicFont" id=1]
 
-size = 45
+size = 60
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[sub_resource type="Gradient" id=3]
 
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+
+flags = 4
+gradient = SubResource( 3 )
+width = 2048
+
+[sub_resource type="Curve" id=5]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 29.9492, 0, 0, Vector2( 0.691342, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0711229, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+
+flags = 4
+width = 2048
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+trail_size_modifier = SubResource( 6 )
+trail_color_modifier = SubResource( 4 )
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = false
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 20.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 2.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Gravity", "Spread", "Trail" ]
+
+[node name="Player" type="KinematicBody2D"]
+
+z_index = 1
 input_pickable = false
 collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="Sprite" type="AnimatedSprite" parent="." index="0"]
 
 rotation = 3.14159
 scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
+frames = SubResource( 2 )
+animation = "default"
+playing = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
@@ -61,15 +135,20 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HitBox" type="Area2D" parent="." index="2"]
+[node name="HitBox" type="Area2D" parent="." index="2" groups=[
+"Player",
+]]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_layer = 8
+collision_mask = 8
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="HitBox" index="0"]
 
@@ -124,6 +203,29 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = true
+
+[node name="Particles2D" type="Particles2D" parent="." index="5"]
+
+position = Vector2( 0, -24 )
+emitting = true
+amount = 60
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 0.5
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 7 )
+texture = ExtResource( 5 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Textures", "Time" ]
 
 [connection signal="timeout" from="CountDown" to="." method="_on_CountDown_timeout"]
 
