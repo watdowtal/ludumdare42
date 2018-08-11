@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/Sprite1.png" type="Texture" id=2]
@@ -22,6 +22,19 @@ use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Curve" id=8]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0527231, 1 ), 15.9836, 15.9836, 0, 0, Vector2( 0.222128, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+
+flags = 4
+width = 2048
+curve = SubResource( 8 )
 
 [sub_resource type="Gradient" id=3]
 
@@ -76,6 +89,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 2.0
 scale_random = 0.0
+scale_curve = SubResource( 9 )
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -84,9 +98,9 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Gravity", "Spread", "Trail" ]
+_sections_unfolded = [ "Gravity", "Scale", "Spread", "Trail" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 z_index = 1
 input_pickable = false
@@ -95,6 +109,9 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="AnimatedSprite" parent="." index="0"]
 
@@ -227,6 +244,15 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Textures", "Time" ]
 
+[node name="Invinc" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
 [connection signal="timeout" from="CountDown" to="." method="_on_CountDown_timeout"]
+
+[connection signal="timeout" from="Invinc" to="." method="_on_Invinc_timeout"]
 
 
