@@ -11,8 +11,8 @@ config_version=3
 [application]
 
 config/name="LudumDare42"
-run/main_scene="res://Scenes/Other/World/World.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Scenes/Title/TitleScreen.tscn"
+config/icon="res://Scenes/Player/Sprite1.png"
 
 [display]
 

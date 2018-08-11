@@ -117,4 +117,68 @@ position = Vector2( 938, 10734 )
 
 position = Vector2( 646, 11286 )
 
+[node name="Meteor26" parent="Meteors" index="25" instance=ExtResource( 4 )]
+
+position = Vector2( 162, 11774 )
+
+[node name="Meteor27" parent="Meteors" index="26" instance=ExtResource( 4 )]
+
+position = Vector2( 638, 12362 )
+
+[node name="Meteor28" parent="Meteors" index="27" instance=ExtResource( 4 )]
+
+position = Vector2( 898, 13006 )
+
+[node name="Meteor29" parent="Meteors" index="28" instance=ExtResource( 4 )]
+
+position = Vector2( 560, 13570 )
+
+[node name="Meteor30" parent="Meteors" index="29" instance=ExtResource( 4 )]
+
+position = Vector2( 902, 13562 )
+
+[node name="Meteor31" parent="Meteors" index="30" instance=ExtResource( 4 )]
+
+position = Vector2( 200, 13980 )
+
+[node name="Meteor32" parent="Meteors" index="31" instance=ExtResource( 4 )]
+
+position = Vector2( 550, 14360 )
+
+[node name="Meteor33" parent="Meteors" index="32" instance=ExtResource( 4 )]
+
+position = Vector2( 190, 14780 )
+
+[node name="Meteor34" parent="Meteors" index="33" instance=ExtResource( 4 )]
+
+position = Vector2( 890, 14760 )
+
+[node name="Meteor35" parent="Meteors" index="34" instance=ExtResource( 4 )]
+
+position = Vector2( 560, 15230 )
+
+[node name="Meteor36" parent="Meteors" index="35" instance=ExtResource( 4 )]
+
+position = Vector2( 896, 15712 )
+
+[node name="Meteor37" parent="Meteors" index="36" instance=ExtResource( 4 )]
+
+position = Vector2( 544, 15712 )
+
+[node name="Meteor38" parent="Meteors" index="37" instance=ExtResource( 4 )]
+
+position = Vector2( 192, 16288 )
+
+[node name="Meteor39" parent="Meteors" index="38" instance=ExtResource( 4 )]
+
+position = Vector2( 544, 16288 )
+
+[node name="Meteor41" parent="Meteors" index="39" instance=ExtResource( 4 )]
+
+position = Vector2( 544, 16896 )
+
+[node name="Meteor40" parent="Meteors" index="40" instance=ExtResource( 4 )]
+
+position = Vector2( 928, 16896 )
+
 
