@@ -2,16 +2,18 @@ extends KinematicBody2D
 
 var speed = 300
 var movedir = Vector2()
-var health = 3
 onready var screensize = get_viewport_rect().size
+var time = 0
+var timetext
 
 func _ready():
-	$SpawnTime.start()
-	set_physics_process(false)
+	time = 0
+	timetext = "0"
 
 func _physics_process(delta):
 	movedir = move_and_slide(movedir)
-	movedir.y += 20
+	movedir.y = 850
+	$HUD/Control/Timeleft.text = timetext
 	
 	var target_speed = 0
 	
@@ -23,5 +25,7 @@ func _physics_process(delta):
 	movedir.x = target_speed * speed
 	position.x = clamp(position.x, 0, screensize.x)
 
-func _on_SpawnTime_timeout():
-	set_physics_process(true)
+func _on_CountDown_timeout():
+	$CountDown.start()
+	time += 1
+	timetext = str(time)

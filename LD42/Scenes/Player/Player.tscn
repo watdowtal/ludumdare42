@@ -1,16 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/Sprite.png" type="Texture" id=2]
+[ext_resource path="res://UI Elements/Fonts/Boo City.ttf" type="DynamicFontData" id=3]
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="DynamicFont" id=1]
+
+size = 45
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 3 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -21,7 +33,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
 
-visible = false
 position = Vector2( -0.25, 0 )
 anchor_mode = 1
 rotating = false
@@ -50,14 +61,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="SpawnTime" type="Timer" parent="." index="2"]
-
-process_mode = 1
-wait_time = 3.0
-one_shot = false
-autostart = false
-
-[node name="HitBox" type="Area2D" parent="." index="3"]
+[node name="HitBox" type="Area2D" parent="." index="2"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -72,9 +76,9 @@ audio_bus_name = "Master"
 build_mode = 0
 polygon = PoolVector2Array( -9.91948, -11.25, 9.33052, -11.5, 25.5805, -11.25, 25.5805, 7, 10.8305, -2.25, 10.8305, 7.5, 1.83052, 29, -0.919479, 29.25, -11.1695, -1.25, -25.1695, 6.25, -24.9195, -11.5 )
 
-[node name="HUD" type="CanvasLayer" parent="." index="4"]
+[node name="HUD" type="CanvasLayer" parent="." index="3"]
 
-layer = 1
+layer = 3
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
@@ -93,7 +97,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Timetext" type="Label" parent="HUD/Control" index="0"]
+[node name="Timeleft" type="Label" parent="HUD/Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -106,10 +110,21 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
-[connection signal="timeout" from="SpawnTime" to="." method="_on_SpawnTime_timeout"]
+[node name="CountDown" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[connection signal="timeout" from="CountDown" to="." method="_on_CountDown_timeout"]
 
 
