@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/Sprite1.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player/Sprite2.png" type="Texture" id=3]
 [ext_resource path="res://UI Elements/Fonts/Boo City.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/Player/Particles.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Player/Light.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -100,7 +101,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Scale", "Spread", "Trail" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 z_index = 1
 input_pickable = false
@@ -156,6 +157,7 @@ __meta__ = {
 "Player",
 ]]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -174,6 +176,7 @@ polygon = PoolVector2Array( -9.91948, -11.25, 9.33052, -11.5, 25.5805, -11.25, 2
 
 [node name="HUD" type="CanvasLayer" parent="." index="3"]
 
+editor/display_folded = true
 layer = 3
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -243,6 +246,31 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Textures", "Time" ]
+
+[node name="Light2D" type="Light2D" parent="Particles2D" index="0"]
+
+position = Vector2( 0, 24 )
+enabled = true
+editor_only = false
+texture = ExtResource( 6 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 0.730469, 0.720883, 0.716202, 1 )
+energy = 0.75
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
 
 [node name="Invinc" type="Timer" parent="." index="6"]
 

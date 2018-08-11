@@ -9,14 +9,14 @@ var health = 3
 var invincible = false
 
 func _ready():
-	time = 52
-	timetext = "52"
-	health = 3
+	time = 53
+	timetext = "53"
+	health = 5
 	invincible = false
 
 func _physics_process(delta):
 	movedir = move_and_slide(movedir)
-	movedir.y = 850
+	movedir.y = 800
 	$HUD/Control/Timeleft.text = timetext
 	
 	var target_speed = 0
@@ -36,12 +36,14 @@ func _on_CountDown_timeout():
 	$CountDown.start()
 	time -= 1
 	timetext = str(time)
+	if time < 0:
+		time = 0
 
 func damage():
-	if not invincible:
+	if invincible == false:
 		health -= 1
-		$Invinc.start()
 		invincible = true
+		$Invinc.start()
 
 func _on_Invinc_timeout():
 	invincible = false
