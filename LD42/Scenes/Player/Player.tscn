@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/Sprite1.png" type="Texture" id=2]
@@ -18,13 +18,13 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=10]
+[sub_resource type="CapsuleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 7.0
 height = 26.0
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 
 size = 60
 use_mipmaps = false
@@ -32,49 +32,92 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="GDScript" id=14]
+
+script/source = "extends Panel
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	pass
+
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+"
+
+[sub_resource type="DynamicFont" id=13]
+
+size = 50
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=11]
+
+size = 40
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=12]
+
+size = 40
+use_mipmaps = true
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Curve" id=4]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0527231, 1 ), 15.9836, 15.9836, 0, 0, Vector2( 0.222128, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
+[sub_resource type="CurveTexture" id=5]
 
 flags = 4
 width = 2048
-curve = SubResource( 3 )
+curve = SubResource( 4 )
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=6]
 
 offsets = PoolRealArray( 0, 0.479532, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=7]
 
 flags = 4
-gradient = SubResource( 5 )
+gradient = SubResource( 6 )
 width = 2048
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=8]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 29.9492, 0, 0, Vector2( 0.691342, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0711229, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=8]
+[sub_resource type="CurveTexture" id=9]
 
 flags = 4
 width = 2048
-curve = SubResource( 7 )
+curve = SubResource( 8 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=10]
 
 render_priority = 0
 trail_divisor = 1
-trail_size_modifier = SubResource( 8 )
-trail_color_modifier = SubResource( 6 )
+trail_size_modifier = SubResource( 9 )
+trail_color_modifier = SubResource( 7 )
 emission_shape = 0
 flag_align_y = false
 flag_rotate_y = false
@@ -98,7 +141,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 2.0
 scale_random = 0.0
-scale_curve = SubResource( 4 )
+scale_curve = SubResource( 5 )
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -163,6 +206,7 @@ __meta__ = {
 "Player",
 ]]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -177,18 +221,17 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 
 position = Vector2( 0, 10 )
-shape = SubResource( 10 )
+shape = SubResource( 2 )
 
-[node name="HUD" type="CanvasLayer" parent="." index="3"]
+[node name="GUI" type="CanvasLayer" parent="." index="3"]
 
-editor/display_folded = true
 layer = 3
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Control" type="Control" parent="HUD" index="0"]
+[node name="Control" type="Control" parent="GUI" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -201,7 +244,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Timeleft" type="Label" parent="HUD/Control" index="0"]
+[node name="Timeleft" type="Label" parent="GUI/Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -214,12 +257,124 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="YouDied" type="Panel" parent="GUI/Control" index="1"]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -134.0
+margin_top = -162.0
+margin_right = 134.0
+margin_bottom = 162.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = SubResource( 14 )
+
+[node name="Text" type="Label" parent="GUI/Control/YouDied" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_bottom = 72.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 13 )
+text = "You Died!"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Buttons" type="VBoxContainer" parent="GUI/Control/YouDied" index="1"]
+
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -82.0
+margin_top = -202.0
+margin_right = 88.0
+margin_bottom = -2.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 30
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="retry" type="Button" parent="GUI/Control/YouDied/Buttons" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 170.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 11 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Retry"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="quit" type="Button" parent="GUI/Control/YouDied/Buttons" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 76.0
+margin_right = 170.0
+margin_bottom = 122.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 12 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Quit"
+flat = false
+align = 1
 _sections_unfolded = [ "custom_fonts" ]
 
 [node name="CountDown" type="Timer" parent="." index="4"]
@@ -231,6 +386,7 @@ autostart = true
 
 [node name="Particles2D" type="Particles2D" parent="." index="5"]
 
+editor/display_folded = true
 position = Vector2( 0, -24 )
 emitting = true
 amount = 20
@@ -245,7 +401,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 9 )
+process_material = SubResource( 10 )
 texture = ExtResource( 5 )
 normal_map = null
 h_frames = 1
@@ -301,6 +457,10 @@ pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[connection signal="pressed" from="GUI/Control/YouDied/Buttons/retry" to="." method="_on_retry_pressed"]
+
+[connection signal="pressed" from="GUI/Control/YouDied/Buttons/quit" to="." method="_on_quit_pressed"]
 
 [connection signal="timeout" from="CountDown" to="." method="_on_CountDown_timeout"]
 

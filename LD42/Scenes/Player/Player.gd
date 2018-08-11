@@ -5,19 +5,19 @@ var movedir = Vector2()
 onready var screensize = get_viewport_rect().size
 var time = 0
 var timetext
-var health = 3
+var health = 5
 var invincible = false
 
 func _ready():
-	time = 60
-	timetext = "60"
+	time = 35
+	timetext = "35"
 	health = 5
 	invincible = false
 
 func _physics_process(delta):
 	movedir = move_and_slide(movedir)
 	movedir.y = 725
-	$HUD/Control/Timeleft.text = timetext
+	$GUI/Control/Timeleft.text = timetext
 	
 	var target_speed = 0
 	
@@ -30,7 +30,10 @@ func _physics_process(delta):
 	position.x = clamp(position.x, 0, screensize.x)
 	
 	if health == 0:
-		get_tree().reload_current_scene()
+		movedir.y = 0
+		$Sprite.hide()
+		$Particles2D.emitting = false
+		$GUI/Control/YouDied.show()
 
 func _on_CountDown_timeout():
 	if time > 0:
@@ -48,3 +51,9 @@ func damage():
 
 func _on_Invinc_timeout():
 	invincible = false
+
+func _on_retry_pressed():
+	get_tree().reload_current_scene()
+
+func _on_quit_pressed():
+	get_tree().quit()
