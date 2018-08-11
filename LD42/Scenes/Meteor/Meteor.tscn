@@ -10,7 +10,7 @@ radius = 26.6667
 
 [node name="Meteor" type="Area2D"]
 
-scale = Vector2( 3, 3 )
+scale = Vector2( 4, 4 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

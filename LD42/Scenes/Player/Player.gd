@@ -34,6 +34,7 @@ func _physics_process(delta):
 		$Sprite.hide()
 		$Particles2D.emitting = false
 		$GUI/Control/YouDied.show()
+		$CountDown.stop()
 
 func _on_CountDown_timeout():
 	if time > 0:
