@@ -5,3 +5,4 @@ func _physics_process(delta):
 	for area in areas:
 		if area.is_in_group("Player"):
 			area.get_parent().damage()
+			queue_free()

@@ -16,7 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 	movedir = move_and_slide(movedir)
-	movedir.y = 875
+	movedir.y = 850
 	$HUD/Control/Timeleft.text = timetext
 	
 	var target_speed = 0

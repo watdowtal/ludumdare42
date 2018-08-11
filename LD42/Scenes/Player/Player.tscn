@@ -6,7 +6,7 @@
 [ext_resource path="res://UI Elements/Fonts/Boo City.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/Player/Particles.png" type="Texture" id=5]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
@@ -15,7 +15,7 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 
 size = 60
 use_mipmaps = false
@@ -23,49 +23,49 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=3]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0527231, 1 ), 15.9836, 15.9836, 0, 0, Vector2( 0.222128, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=9]
+[sub_resource type="CurveTexture" id=4]
 
 flags = 4
 width = 2048
-curve = SubResource( 8 )
+curve = SubResource( 3 )
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=5]
 
 offsets = PoolRealArray( 0, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=6]
 
 flags = 4
-gradient = SubResource( 3 )
+gradient = SubResource( 5 )
 width = 2048
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=7]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 29.9492, 0, 0, Vector2( 0.691342, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0711229, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
+[sub_resource type="CurveTexture" id=8]
 
 flags = 4
 width = 2048
-curve = SubResource( 5 )
+curve = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=9]
 
 render_priority = 0
 trail_divisor = 1
-trail_size_modifier = SubResource( 6 )
-trail_color_modifier = SubResource( 4 )
+trail_size_modifier = SubResource( 8 )
+trail_color_modifier = SubResource( 6 )
 emission_shape = 0
 flag_align_y = false
 flag_rotate_y = false
@@ -89,7 +89,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 2.0
 scale_random = 0.0
-scale_curve = SubResource( 9 )
+scale_curve = SubResource( 4 )
 color = Color( 1, 1, 1, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
@@ -100,7 +100,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Scale", "Spread", "Trail" ]
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 z_index = 1
 input_pickable = false
@@ -117,7 +117,7 @@ __meta__ = {
 
 rotation = 3.14159
 scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "default"
 playing = true
 _sections_unfolded = [ "Transform" ]
@@ -206,7 +206,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -237,7 +237,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 7 )
+process_material = SubResource( 9 )
 texture = ExtResource( 5 )
 normal_map = null
 h_frames = 1
