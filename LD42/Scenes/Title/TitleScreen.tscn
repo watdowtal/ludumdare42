@@ -54,10 +54,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -26.4187, -20.093 ), Vector2( 1070, 649 ), Vector2( 1070, 649 ) ]
+"values": [ Vector2( -26.4187, -20.093 ), Vector2( 1170, 715 ), Vector2( 1170, 715 ) ]
 }
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -270,6 +270,7 @@ _sections_unfolded = [ "custom_fonts" ]
 
 [node name="Ship" type="Sprite" parent="." index="5"]
 
+editor/display_folded = true
 position = Vector2( -26.4187, -20.093 )
 rotation = 2.35619
 scale = Vector2( 2.6875, 2.6875 )
